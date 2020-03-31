@@ -1,0 +1,67 @@
+//------------------------------------------------
+//--- 010 Editor v8.0.1 Binary Template
+//
+//      File: 
+//   Authors: 
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+struct {
+  UINT FrameCount;
+  UINT MeshCount;
+} FILE_HEADER;
+
+typedef struct {     
+  UINT16 x;
+  UINT16 y;
+  UINT16 z;
+} VECTOR_SHORT; 
+
+typedef struct {     
+  FLOAT x;
+  FLOAT y;
+  FLOAT z;
+} VECTOR_3F; 
+
+typedef struct {     
+  FLOAT x;
+  FLOAT y;
+} VECTOR_2F; 
+
+typedef struct {
+  VECTOR_3F Coordinates;
+  VECTOR_3F Normal;
+} VERTEX;
+
+//------------------------------------
+
+typedef struct {
+  UINT VertexCount;
+  UINT UVCount;
+  UINT FaceCount;
+  VERTEX Vertex[VertexCount];
+  VECTOR_SHORT FaceIndexes[FaceCount];
+  VECTOR_2F uvCoordinates[UVCount];
+  VECTOR_SHORT uvIndexes[FaceCount];
+} MESH;
+
+struct {
+  MESH Meshes[FILE_HEADER.MeshCount] <optimize=false>;
+} MESHES <name="Meshes">;
+
+local uint i;
+
+struct {
+  struct {
+    for (i = 0; i < FILE_HEADER.MeshCount; ++i) {
+      struct {  
+        VERTEX Vertex[MESHES.Meshes[i].VertexCount];
+      } VERTEXES; 
+    };
+  } FRAME[FILE_HEADER.FrameCount - 1];
+} MORPHS <name="Morphing animation data">;
