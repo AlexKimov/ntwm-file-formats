@@ -11,5 +11,5 @@ Nosferatu The Wrath of Malachi file formats
 
 ### Plugins
 Noesis python scripts 
-* [fmt_ntwm_anb.py](https://github.com/AlexKimov/RSE-file-formats/blob/master/scripts/noesis/fmt_rse_rsb.py) - open .anb files
-* [fmt_ntwm_fxm.py](https://github.com/AlexKimov/RSE-file-formats/blob/master/scripts/noesis/fmt_rse_rsb.py) - open .fxm files
+* [fmt_ntwm_anb.py](https://github.com/AlexKimov/ntwm-file-formats/blob/master/plugins/noesis/fmt_ntwm_anb.py) - open .anb files
+* [fmt_ntwm_fxm.py](https://github.com/ntwm-file-formats/blob/master/plugins/noesis/fmt_ntwm_fxm.py) - open .fxm files
