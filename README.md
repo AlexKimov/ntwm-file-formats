@@ -1,7 +1,7 @@
 # About
 Nosferatu The Wrath of Malachi file formats
 
-**Links**
+#### Links
 https://github.com/MeinerI/Nosferatu-The-Wrath-of-Malachi - almost everything is based on this repository.
 
 ### Templates
