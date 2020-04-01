@@ -1,6 +1,9 @@
 # About
 Nosferatu The Wrath of Malachi file formats
 
+**Links**
+https://github.com/MeinerI/Nosferatu-The-Wrath-of-Malachi - almost everything is based on this repository.
+
 ### Templates
 | №   | Format/Ext | Progress | Template (010 Editor) | Description |
 | :-- | :-------- | :------ | :------- | :--   |
@@ -13,3 +16,5 @@ Nosferatu The Wrath of Malachi file formats
 [Noesis](https://richwhitehouse.com/index.php?content=inc_projects.php) python scripts 
 * [fmt_ntwm_anb.py](https://github.com/AlexKimov/ntwm-file-formats/blob/master/plugins/noesis/fmt_ntwm_anb.py) - open .anb files
 * [fmt_ntwm_fxm.py](https://github.com/ntwm-file-formats/blob/master/plugins/noesis/fmt_ntwm_fxm.py) - open .fxm files
+
+
