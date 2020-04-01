@@ -66,9 +66,13 @@ typedef struct {
   UINT Unknown;
   UINT Unknown;
   CSTRING Name; 
-  UINT ParentIndex;
+  INT ParentIndex;
   MATRIX4x4 Matrix;
-} BONE;
+} BONE <name=getName>;
+
+string getName(BONE &bone) {
+  return bone.Name.Text; 
+}
 
 struct {
   BONE Bone[HEADER.BoneCount] <optimize=false>;
