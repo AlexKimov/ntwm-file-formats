@@ -51,13 +51,13 @@ typedef struct {
     FLOAT w;
   } POSITION[KeyCount];
 
-  UINT Count;
+  UINT KeyCount;
   struct {
     FLOAT KeyTime;
     FLOAT y;
     FLOAT z;
     FLOAT w;
-  } U[Count];
+  } U[KeyCount];
 
   UINT Unknown; // 0
 } BONE <name=getName>;
