@@ -78,7 +78,10 @@ struct {
   BONE Bone[HEADER.BoneCount] <optimize=false>;
 } BONES;
 
-BYTE Data[44];
+if (HEADER.BoneCount != 0)
+  BYTE Data[44];
+else
+  BYTE Data[32];
 
 UINT Count;
 CSTRING Name; 
@@ -96,6 +99,7 @@ UINT VertexCount;
 VECTOR_SHORT FaceIndexes1[FaceCount];
 VERTEX Vertex[VertexCount];
 
+if (HEADER.BoneCount != 0)
 struct {
   VECTOR_3F Unknown;  
   UBYTE WeightCount;
