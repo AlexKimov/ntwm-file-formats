@@ -92,7 +92,25 @@ UINT VertexCount;
 VECTOR_SHORT FaceIndexes1[FaceCount];
 VERTEX Vertex[VertexCount];
 
-FLOAT Unknown;
-FLOAT Unknown;
-FLOAT Unknown;
+struct {
+  VECTOR_3F Unknown;  
+  UBYTE WeightCount;
+  UBYTE Unknown;
+  UBYTE Unknown;
+  UBYTE Unknown;
+
+  FLOAT VertexWeight1;
+  FLOAT VertexWeight2;
+  FLOAT VertexWeight2;
+  FLOAT VertexWeight3;
+
+  UBYTE BoneIndex1;    
+  UBYTE BoneIndex2; 
+  UBYTE BoneIndex3; 
+  UBYTE BoneIndex4;   
+
+  VECTOR_3F Normal;
+  VECTOR_2F UV;
+} VERTEX_DATA[VertexCount];
+
 
