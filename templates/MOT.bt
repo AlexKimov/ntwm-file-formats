@@ -57,7 +57,7 @@ typedef struct {
     FLOAT y;
     FLOAT z;
     FLOAT w;
-  } U[KeyCount];
+  } SCALE[KeyCount];
 
   UINT Unknown; // 0
 } BONE <name=getName>;
