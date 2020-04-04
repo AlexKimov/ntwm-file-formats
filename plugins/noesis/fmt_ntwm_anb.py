@@ -6,7 +6,8 @@ def registerNoesisTypes():
 
     noesis.setHandlerTypeCheck(handle, ntwmModelCheckType)
     noesis.setHandlerLoadModel(handle, ntwmModelLoadModel)
-        
+    noesis.setHandlerWriteModel(handle, ntwmModelWriteModel)
+    
     return 1 
    
    
@@ -19,7 +20,14 @@ class Vector3UI16:
     def getStorage(self):
         return (self.x, self.y, self.z)    
    
-   
+    def toBytes(self):
+        result = bytearray()
+        result += self.x.to_bytes(2, byteorder='little')
+        result += self.y.to_bytes(2, byteorder='little')
+        result += self.z.to_bytes(2, byteorder='little')
+        
+        return result 
+        
 class Vector3F:
     def read(self, reader):
         self.x = reader.readFloat()
@@ -41,9 +49,15 @@ class Vector2F:
     def read(self, reader):
         self.x = reader.readFloat()
         self.y = reader.readFloat()
- 
+        
     def getStorage(self):
         return (self.x, self.y) 
+        
+    def toBytes(self):
+        result = bytearray()
+        result += bytearray(struct.pack("f", self.x))
+        result += bytearray(struct.pack("f", self.y))
+        return result           
         
     
 class NTWMMesh:
@@ -73,10 +87,10 @@ class NTWMMesh:
             self.facesIndexes.append(faceIndexes)
             
         for uvCoordIndex in range(self.uvCount):
-            coordinates = Vector2F() 
-            coordinates.read(reader)
+            uvCoordinates = Vector2F() 
+            uvCoordinates.read(reader)
             
-            self.uvCoordinates.append(coordinates)
+            self.uvCoordinates.append(uvCoordinates)
             
         for uvIndex in range(self.faceCount):
             uvIndexes = Vector3UI16() 
@@ -85,11 +99,14 @@ class NTWMMesh:
             self.uvIndexes.append(uvIndexes)
  
  
-class NTWMMorphFrame:
-    def __init__(self):
+class NTWMFrameMesh: 
+    def __init__(self): 
         self.positions = bytearray()    
         self.normals = bytearray()
-        self.vertexCount = 0        
+        
+class NTWMMorphFrame:
+    def __init__(self):
+        self.frameMeshes = []      
         
             
 class NTWMCharacterModel: 
@@ -114,16 +131,17 @@ class NTWMCharacterModel:
     def readFrame(self, reader):
         morphFrame = NTWMMorphFrame()
         for mesh in self.meshes:
+            frameMesh = NTWMFrameMesh()
             for vertexIndex in range(mesh.vertexCount):
                 coordinates = Vector3F()
                 coordinates.read(reader)
                 normal = Vector3F()
                 normal.read(reader)  
 
-                morphFrame.positions += coordinates.toBytes()
-                morphFrame.normals += normal.toBytes()                
- 
-            morphFrame.vertexCount += mesh.vertexCount
+                frameMesh.positions += coordinates.toBytes()
+                frameMesh.normals += normal.toBytes()                
+            
+            morphFrame.frameMeshes.append(frameMesh)
                
         return morphFrame 
             
@@ -132,7 +150,6 @@ class NTWMCharacterModel:
             self.morphFrames.append(self.readFrame(reader))  
             
     def read(self):
-        #noesis.logPopup()
         self.readHeader(self.reader)         
         self.readModelData(self.reader)       
         self.readMorphFrames(self.reader)       
@@ -142,30 +159,117 @@ def ntwmModelCheckType(data):
             
     return 1     
     
-
+    
+# ToDo: texture coordinates
 def ntwmModelLoadModel(data, mdlList): 
     ntwmModel = NTWMCharacterModel(NoeBitStream(data)) 
     ntwmModel.read()
     
     ctx = rapi.rpgCreateContext()
-      
-    for mesh in ntwmModel.meshes:
-        for faceIndex in mesh.facesIndexes:
-            rapi.immBegin(noesis.RPGEO_TRIANGLE) 
-            
-            for index in faceIndex.getStorage():
-                rapi.immVertex3(mesh.vertexCoordinates[index].getStorage())
-            
-            rapi.immEnd()          
 
-    # for frame in ntwmModel.morphFrames:
-       # rapi.rpgFeedMorphTargetPositions(frame.positions, noesis.RPGEODATA_FLOAT, 12)
-       # rapi.rpgFeedMorphTargetNormals(frame.normals, noesis.RPGEODATA_FLOAT, 12)
-       # rapi.rpgCommitMorphFrame(len(frame.positions) // 12)
+    materials = []
+    textures = [] 
+    textureName = ""
+            
+    textureName = "F:/Games/Nosferatu - The Wrath of Malachi/Version/Data/corpse.jpg"        
+    texture = rapi.loadExternalTex(textureName)
+
+    if texture == None:
+        texture = NoeTexture(textureName, 0, 0, bytearray())
+
+    textures.append(texture)            
+    material = NoeMaterial(textureName, textureName)
+    material.setFlags(noesis.NMATFLAG_TWOSIDED, 1)
+    materials.append(material)     
+          
+    noesis.logPopup()
     
-    # rapi.rpgCommitMorphFrameSet()       
+    index = 0     
+    for mesh in ntwmModel.meshes:
+        rapi.rpgSetMaterial(textureName)   
+        rapi.rpgSetName("mesh " + str(index))
+        
+        # for i in range(len(mesh.facesIndexes)):               
+            # rapi.immBegin(noesis.RPGEO_TRIANGLE)
+            
+            # for idx in range(3):
+                # uvIndex = mesh.uvIndexes[i].getStorage()[idx] 
+                # rapi.immUV2(mesh.uvCoordinates[uvIndex].getStorage())  
+                # vertexIndex = mesh.facesIndexes[i].getStorage()[idx]                                 
+                # rapi.immVertex3(mesh.vertexCoordinates[vertexIndex].getStorage())                   
+                
+            # rapi.immEnd()       
+       
+        positions = bytearray() 
+        for vertex in mesh.vertexCoordinates:
+            positions += vertex.toBytes()
+            
+        uvs = bytearray() 
+        for uvIndexes in mesh.uvIndexes:
+            uvs += uvIndexes.toBytes()        
+        for uvIndexes in mesh.uvIndexes:        
+            for i in uvIndexes.getStorage():
+                uvs += mesh.uvCoordinates[i].toBytes()   
+            
+        triangles = bytearray() 
+        for triangle in mesh.facesIndexes:
+            triangles += triangle.toBytes()        
+                  
+        rapi.rpgBindPositionBuffer(positions, noesis.RPGEODATA_FLOAT, 12)      
+        #rapi.rpgBindUV1Buffer(uvs, noesis.RPGEODATA_FLOAT, 8) 
+        
+        for frame in ntwmModel.morphFrames:
+            frameMesh = frame.frameMeshes[index]
+            rapi.rpgFeedMorphTargetPositions(frameMesh.positions, noesis.RPGEODATA_FLOAT, 12)
+            rapi.rpgFeedMorphTargetNormals(frameMesh.normals, noesis.RPGEODATA_FLOAT, 12)
+            rapi.rpgCommitMorphFrame(len(frameMesh.positions) // 12)
+            
+        rapi.rpgCommitMorphFrameSet()
+        
+        rapi.rpgCommitTriangles(triangles, noesis.RPGEODATA_USHORT, len(mesh.facesIndexes)*3, noesis.RPGEO_TRIANGLE, 1)
+        rapi.rpgClearBufferBinds()
+        
+        index += 1
+        
+    rapi.rpgOptimize()
     
     mdl = rapi.rpgConstructModelSlim()
+    
+    mdl.setModelMaterials(NoeModelMaterials(textures, materials)) 
+    
     mdlList.append(mdl)
     
     return 1 
+ 
+
+def ntwmModelWriteModel(mdl, bs): 
+    # writing header
+    bs.writeInt(len(mdl.meshes[0].morphList)) # number of frames
+    bs.writeInt(len(mdl.meshes)) # number of meshes
+    
+    # meshes
+    for mesh in mdl.meshes:        
+        bs.writeInt(len(mesh.positions))
+        bs.writeInt(len(mesh.uvs))
+        bs.writeInt(len(mesh.indices)//3)        
+
+        for i in range(len(mesh.positions)):
+            bs.writeBytes(mesh.positions[i].toBytes())               
+            bs.writeBytes(mesh.normals[i].toBytes())            
+        for idx in mesh.indices:
+            bs.writeShort(idx)
+        for vcmp in mesh.uvs:
+            bs.writeBytes(vcmp.toBytes()[0:8])
+        for idx in mesh.indices:
+            bs.writeShort(idx)
+            
+    # morphs 
+    for frameIndex in range(len(mdl.meshes[0].morphList)):  
+        for mesh in mdl.meshes:       
+            mf = mesh.morphList[frameIndex]
+            for i in range(len(mf.positions)):      
+                bs.writeBytes(mf.positions[i].toBytes())                  
+                bs.writeBytes(mf.normals[i].toBytes())
+    
+   
+    return 1
