@@ -1,0 +1,1 @@
+F:\git\qbms\quickbms.exe -K -d -e -Y -F "*.csa" unpack_csa.bms "F:\Games\Nosferatu - Wrath of Malachi" unpacked_nosf

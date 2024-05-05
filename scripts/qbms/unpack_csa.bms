@@ -1,0 +1,13 @@
+IDString "GEEK" 
+
+get unk long
+get offset long
+get unk long
+get FILES long
+
+for i = 0 < FILES
+    get OFFSET long
+    get FSIZE long
+    getdstring FNAME 128
+    log FNAME OFFSET FSIZE
+next i
