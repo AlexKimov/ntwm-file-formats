@@ -101,7 +101,7 @@ VERTEX Vertex[VertexCount];
 
 if (HEADER.BoneCount != 0)
 struct {
-  VECTOR_3F Unknown;  
+  VECTOR_3F Coordinates;  
   UBYTE WeightCount;
   UBYTE Unknown;
   UBYTE Unknown;
@@ -112,13 +112,15 @@ struct {
   FLOAT VertexWeight2;
   FLOAT VertexWeight3;
 
-  UBYTE BoneIndex1;    
+  UBYTE BoneIndex1;
+  if (BoneIndex1 == 255)
+    klugjlkg();    
   UBYTE BoneIndex2; 
   UBYTE BoneIndex3; 
   UBYTE BoneIndex4;   
 
   VECTOR_3F Normal;
   VECTOR_2F UV;
-} VERTEX_DATA[VertexCount];
+} VERTEX_DATA[VertexCount] <name="Weights">;
 
 

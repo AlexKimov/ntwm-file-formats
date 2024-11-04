@@ -61,7 +61,7 @@ struct {
     for (i = 0; i < FILE_HEADER.MeshCount; ++i) {
       struct {  
         VERTEX Vertex[MESHES.Meshes[i].VertexCount];
-      } VERTEXES; 
+      } MESH_VERTEXES; 
     };
   } FRAME[FILE_HEADER.FrameCount - 1];
 } MORPHS <name="Morphing animation data">;
