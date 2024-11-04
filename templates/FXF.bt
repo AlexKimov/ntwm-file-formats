@@ -1,0 +1,126 @@
+//------------------------------------------------
+//--- 010 Editor v8.0.1 Binary Template
+//
+//      File: 
+//   Authors: 
+//   Version: 
+//   Purpose: 
+//  Category: 
+// File Mask: 
+//  ID Bytes: 
+//   History: 
+//------------------------------------------------
+
+
+typedef struct {
+  UINT Length;
+  CHAR Text[Length];
+} CSTRING;
+
+//-----------------
+
+struct {
+  UINT Unknown;
+  FLOAT Unknown;
+  BYTE Data[16];
+  UINT SectionCount;
+} HEADER;
+
+struct {
+  UINT Count;
+  struct {
+    CSTRING Name;   
+  } DATA0[Count] <optimize=false>;
+} NAMES[HEADER.SectionCount] <optimize=false>;
+
+
+UINT Count;
+typedef struct {
+    UINT type;
+    UINT Index;
+    UINT UnknownA;
+    CSTRING Name;  
+    if (type == 0)
+      struct {
+        CSTRING Name2;
+        CSTRING Name3; 
+        BYTE Data[32];
+      } DATA; 
+    else if (type == 1) 
+      struct { 
+        CSTRING Name2;
+        CSTRING Name3;
+        UINT A;
+        UINT A;
+        UINT Count; 
+        struct {
+          UINT A;
+          UINT A;
+          BYTE K[44];
+          BYTE B[12];          
+        } B[Count];
+        UINT A;
+        UINT A;
+      } DATA; 
+    else if (type == 2) 
+      struct { 
+        CSTRING Name2;
+        CSTRING Name3; 
+        BYTE Data[20];
+      } DATA; 
+    else if (type == 4) 
+      struct { 
+        UINT A[4];
+        FLOAT Data1[11];
+        UINT B[5];  
+        FLOAT Data2[2];
+
+        UINT A1;
+        UINT A2;
+        UINT A3;
+        if (A3 == 2)
+        UINT A;
+
+        UINT Data3[11];       
+      } DATA;
+    else if (type == 6) 
+      struct { 
+        CSTRING Name2;
+        CSTRING Name3;  
+        BYTE Data[12];
+      } DATA;
+    else if (type == 7) 
+      struct { 
+        UINT A1;
+        UINT A2;
+        UINT A3; 
+        UINT A3; 
+        CSTRING Name2;
+        UINT Count;
+        BYTE Data[Count];
+        UINT A1;
+        UINT A2;
+        UINT A3; 
+        UINT A3; 
+        UINT A3; 
+        FLOAT A;
+        UINT Width; 
+        UINT Height; 
+        UINT Count; 
+        FLOAT A;    
+        BYTE Data0[Count];
+        BYTE AA[32];
+        struct {
+          FLOAT A;
+          FLOAT A;
+          FLOAT A;
+          FLOAT A;
+        } I[Count];
+      } DATA;
+} DATA <name=getName, optimize=false>;
+
+DATA D[Count];
+
+string getName(DATA &d) {
+  return d.Name;
+}

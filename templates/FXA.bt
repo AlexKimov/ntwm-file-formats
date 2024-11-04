@@ -1,0 +1,609 @@
+const int NODE_TYPE_SPAWN = 0x0; 
+const int NODE_TYPE_MODEL = 0x3;
+const int NODE_TYPE_LIGHT = 0x4; 
+const int NODE_TYPE_Matrix_Animation = 0x1C;
+const int NODE_TYPE_Matrix_TRIGGER = 0x1F; 
+
+LittleEndian();
+
+UINT version;
+UINT B;
+UINT C;
+UINT nodeNum;
+
+  struct { 
+    uint type;
+    uint index;
+    uint parentIndex;
+    UINT Length;
+    char Name[Length]; 
+    float matrix[10];  
+      uint b;
+      uint b;
+      uint ertt;
+      uint b;
+      uint b;   
+      uint num00;  
+ 
+    struct {
+      UINT Length;
+      char Name3[Length]; 
+      uint b;
+      uint b;
+      uint b;
+      float brt[7];
+      int b;
+      uint b;
+      uint b;
+      uint b;
+      uint b;
+      uint b;
+      uint b;
+      uint b;
+      uint b;
+      uint b;
+      uint b;
+      uint b;
+      uint b;
+    } obj[num00] <optimize=false>;
+
+    UINT num;
+    struct {
+      UINT C;
+      UINT Length;
+      char Name[Length];
+      UINT Length;
+      char Name2[Length];
+      UINT Length;
+      char Name3[Length];
+   } u2[num] <optimize=false>;
+
+    uint b;
+    uint b;
+    uint b;  
+    uint b;
+    uint b;
+    uint b;
+    uint b;     
+    uint b;
+
+    switch (type) 
+    {
+      case NODE_TYPE_SPAWN:
+           uint b;
+          uint b;
+          uint b;       
+          uint b;
+          break;
+      case 2:
+        uint b;
+        uint b;
+          uint b;
+          uint b;
+          uint b;  
+          uint b;
+          uint b;
+          uint b;
+          uint b; 
+          uint b;
+          uint b;
+          uint b;
+          uint b;
+          uint b;
+          uint b;  
+          uint b; 
+
+      uint b;
+      uint b;
+      uint b;
+        break;
+      case NODE_TYPE_MODEL:    
+        uint aab; 
+        uint b;
+        uint b;
+        uint b8; 
+        if (b8 == 0)
+          uint b;  
+        uint num;
+        struct {
+          int a;
+          int a;
+        } g[num];
+        uint b3;
+        uint b;
+        uint b;
+        uint bnum;
+        uint bn[bnum*2];
+        uint rtnum;
+        uint bn[rtnum*2];
+        uint b;
+        break;
+      case NODE_TYPE_LIGHT:
+        if (b == 0) {
+            struct {
+              int a;
+              float b;
+              float b;
+              float b;
+            } g[4];
+              uint b;
+              uint b;
+              uint b;
+        } else
+        {
+              float g[8];
+              uint b;
+              uint b;
+              uint b;
+              float g1[4];
+        }
+          uint b;
+          uint b;
+          uint b; 
+          uint b;
+          uint b; 
+          uint b; 
+          uint b;
+        break;
+      case 5:
+         UINT num8;
+    struct {
+      UINT C;
+      UINT C;
+      UINT Length;
+      char Name[Length];
+   } u2[num] <optimize=false>;
+
+         uint b;
+          uint b;
+          uint b; 
+          uint b;
+          uint nb;
+
+
+    struct {
+          uint n; 
+      uint b;
+      UINT Length;
+      char Name[Length];
+   } u3[nb] <optimize=false>;
+
+          uint b;
+          uint b; 
+          uint b;
+          uint b;
+
+        break;
+      case 7:
+        struct {
+          float b;
+          float b;
+          float b;
+          int a;
+        } g[2];
+        uint b; 
+        uint b;
+        uint b;
+        uint b;
+        uint b; 
+        uint b;
+        uint b;
+        uint b;
+
+        if (version > 17)
+        {
+          uint b;
+        }
+        break;
+      case 10:
+        uint b;
+        uint b;
+        uint b;
+        uint b; 
+        uint b;
+        uint b;
+        uint b;
+        uint b; 
+        break;
+      case 11:
+        uint b;
+        uint b;
+        uint b;
+        uint num;
+
+
+
+        struct {
+          uint b1;
+            uint b2;
+            char name[b2];
+          UINT Length;
+          char Name[Length];
+          UINT Length;
+          char Name1[Length];
+        float b;
+        } u2[num] <optimize=false>;  
+        break;
+      case 12:
+        uint num;
+        uint L;
+        uint b;
+        uint b; 
+        uint b;
+        uint b;
+        uint b;
+        uint b; 
+        uint b;
+        uint b;
+        uint b;
+        uint b; 
+        uint b;
+        uint num;
+
+        uint b;
+        uint b; 
+        uint b;
+        uint b;
+        uint b;
+        uint b; 
+        uint b;
+        uint b;
+        uint b;
+        uint b; 
+        uint b;
+        uint b;
+        uint b;
+        uint b; 
+        uint b;
+        if (L == 0)
+        {
+        uint b;
+        uint b;
+        uint b; 
+        uint b; 
+        } else {
+        char name[b];
+        }
+        break;
+      case 13:
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+
+
+        break;
+      case 15:
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        float b2[6];
+        uint b34;
+        uint b;
+        uint b;
+        uint b34;
+        break;
+      case 16:
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+
+        break;
+      case 17:
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint num;
+        uint b;
+        uint b;
+        uint b; 
+   
+        struct {
+          UINT Length;
+          char Name[Length];
+          uint b;
+          uint b;
+          uint b;
+        } u3[num] <optimize=false>;
+
+          uint b;
+          UINT Length;
+          char Name33w[Length];
+          uint b;
+        break;
+      case 18:
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        break;
+      case 20:
+        uint b;
+       uint b;
+       uint b;
+       uint b;
+       uint b;
+       uint b;
+       uint b;
+       uint b;
+       uint b;
+        break;
+      case 21:
+        uint bew;
+        uint b;
+        uint b;
+        uint b;   
+          uint num;
+          struct {
+            UINT Length;
+            char Name[Length];
+            uint b;
+            uint b;
+            uint b;
+            uint b;
+            uint b;
+          } u2[num] <optimize=false>; 
+        uint b54;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint num;       
+        uint b12[num];     
+        uint b;
+        uint b;
+        uint b;
+        uint b;       
+        uint b;     
+        uint b;
+        uint num34;
+        uint a[num34*2];
+
+        break;
+      case 25:
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        
+        struct {
+          float b;
+          uint b;
+          uint b;
+          float b;
+        } a[7];
+        uint b; 
+        break;
+      case 26:
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        break;
+      case 29:
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        break;
+      case NODE_TYPE_Matrix_Animation:
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        break;
+      case NODE_TYPE_Matrix_TRIGGER:
+         uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;   
+
+        break;
+    };
+ 
+  } NODE[B] <optimize=false>;
