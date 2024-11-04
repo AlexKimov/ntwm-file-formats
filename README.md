@@ -43,8 +43,8 @@ Nosferatu Wrath of Malachi (2003) / Вампиры (2003)
 | 3   | .fxm | 90% |  [FFXM(keypose).bt](templates/FXM(keypose).bt)  | Модели (слово keypose в названии) |
 | 4   |  .mot | 90% |  [MOT.bt](templates/MOT.bt)  | Анимации для fxm моделей |
 | 5   |  .csa | 90% |  [CSA.bt](templates/CSA.bt)  | Файл ресурсов игры |
-| 6   |  .fxa | 20% |  [FXA.bt](templates/FXA.bt)  | Файл ресурсов игры |
-| 7   |  .fxf | 20% |  [FXF.bt](templates/FXF.bt)  | Файл ресурсов игры |
+| 6   |  .fxa | 20% |  [FXA.bt](templates/FXA.bt)  | Файл хранитель объектов |
+| 7   |  .fxf | 20% |  [FXF.bt](templates/FXF.bt)  | Файл описание объектов в fxa файлах |
 
     Для чего нужны шаблоны
     Отображение структуры файла в удобном для изучения и редактирования виде, другими словами - описание формата файла.
