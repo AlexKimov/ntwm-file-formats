@@ -457,6 +457,16 @@ UINT nodeNum;
         uint b;
         uint b;
         uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
+        uint b;
         break;
       case 20:
         uint b;
@@ -468,29 +478,31 @@ UINT nodeNum;
        uint b;
        uint b;
        uint b;
+
         break;
       case 21:
         uint bew;
         uint b;
         uint b;
         uint b;   
-          uint num;
-          struct {
-            UINT Length;
-            char Name[Length];
-            uint b;
-            uint b;
-            uint b;
-            uint b;
-            uint b;
-          } u2[num] <optimize=false>; 
+        uint num;
         uint b54;
         uint b;
         uint b;
         uint b;
+        uint bwarn;   
+        if (bwarn == 1)    
+            struct {
+               UINT Length;
+               char Name[Length];
+                uint b;
+               uint b;
+               uint b; 
+
+            } ap[bwarn];
+        uint b;     
+        uint b;   
         uint b;
-        uint num;       
-        uint b12[num];     
         uint b;
         uint b;
         uint b;
