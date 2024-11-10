@@ -20,9 +20,9 @@ typedef struct {
 //-----------------
 
 struct {
-  UINT Unknown;
+  UINT Version;
   FLOAT Unknown;
-  BYTE Data[16];
+  UINT EmptyData[4];
   UINT SectionCount;
 } HEADER;
 
@@ -79,9 +79,10 @@ typedef struct {
         UINT A2;
         UINT A3;
         if (A3 == 2)
-        UINT A;
-
-        UINT Data3[11];       
+        UINT num;
+        UINT num;
+        UINT AA[num];
+        UINT Data3[8];       
       } DATA;
     else if (type == 6) 
       struct { 
@@ -109,7 +110,7 @@ typedef struct {
         UINT Count; 
         FLOAT A;    
         BYTE Data0[Count];
-        BYTE AA[32];
+        BYTE AA[30];
         struct {
           FLOAT A;
           FLOAT A;
@@ -117,7 +118,7 @@ typedef struct {
           FLOAT A;
         } I[Count];
       } DATA;
-} DATA <name=getName, optimize=false>;
+} DATA <optimize=false>;
 
 DATA D[Count];
 
