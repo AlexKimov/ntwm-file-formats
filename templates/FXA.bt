@@ -25,12 +25,35 @@ UINT B;
 UINT C;
 UINT nodeNum;
 
-  struct { 
+void readNode3() {
+    uint b15; 
+    uint num;
+    struct {
+      uint b17;
+      uint b18; 
+    } k[num];
+    if (version > 5)
+    {
+      uint b19;  
+      uint b20;
+      uint b21;  
+      uint b22;
+      uint b23;
+      uint b24;  
+    };
+    if (version > 47)
+    {
+      uint b25;
+      uint b26;
+    }
+};
+
+typedef struct { 
     uint type;
     uint index;
     uint parentIndex;
     UINT Length;
-    char Name[Length]; 
+    char NodeName[Length]; 
 
     VECTOR_3F coordinates;
     VECTOR_3F normal;
@@ -121,51 +144,24 @@ UINT nodeNum;
 
         break;
       case 3:    
-        uint b15; 
-        uint b16;
-        uint b17;
-        uint b18; 
-        if (version > 5)
-        {
-          uint b19;  
-          uint b20;
-          uint b21;  
-          uint b22;
-          uint b23;
-          uint b24;  
-        };
-        if (version > 47)
-        {
-          uint b25;
-          uint b26;
-        }
+        readNode3();
         break;
       case NODE_TYPE_LIGHT:
-        if (b == 0) {
-            struct {
-              int a;
-              float b;
-              float b;
-              float b;
-            } g[4];
+          uint b15;
+          uint b16[4];
+          uint b17[4];
+          uint b18[4];
+          uint b19;
+ 
+          if (version > 55) {
               uint b;
               uint b;
               uint b;
-        } else
-        {
-              float g[8];
-              uint b;
-              uint b;
-              uint b;
-              float g1[4];
-        }
+          }
           uint b;
           uint b;
-          uint b; 
+          uint b;     
           uint b;
-          uint b; 
-          uint b;
-          
           uint b;
         break;
       case 5:
@@ -213,6 +209,15 @@ UINT nodeNum;
 
         float b27;
         break;
+      case 9:
+        uint b15;
+        uint b16;
+        uint b17;
+
+          UINT Length;
+          char Name00[Length];
+
+        break;
       case 10:
         uint b15;
         uint b16;
@@ -233,23 +238,28 @@ UINT nodeNum;
         uint b25;
         break;
       case 11:
-        uint b;
-        uint b;
-        uint b;
+        uint b15;
+        uint b16;
+        uint b17;
+        uint b18;
+
         uint num;
-
-
-
         struct {
-          uint b1;
-            uint b2;
-            char name[b2];
-          UINT Length;
-          char Name[Length];
-          UINT Length;
-          char Name1[Length];
-        float b;
-        } u2[num] <optimize=false>;  
+           uint b1;
+           uint length;
+           char Name0[length];
+           UINT length;
+           char Name[length];
+           UINT length;
+           char Name1[length];
+           float b;
+        } u2[num] <optimize=false>;      
+
+        if (version >= 48)
+        {
+          uint b27;
+         uint b27;
+        };
         break;
       case 12:
         uint b15;
@@ -267,7 +277,7 @@ UINT nodeNum;
 
         if (version >= 24)
         {
-          uint num;
+          uint b27;
         }; 
 
         if (version >= 26)
@@ -276,14 +286,16 @@ UINT nodeNum;
           char Name13[Length];
         };
 
-        if (version >= 36)
+        if (version >= 54)
         {
           uint b28;
         };
 
-        switch () 
+        switch (b15) 
         {
           case 0:
+            uint b29;
+            uint b30;
             break;
           case 1:
             uint b29;
@@ -311,88 +323,176 @@ UINT nodeNum;
             uint b31;
             uint b32;
             uint b33;
-            uint b34;
-            uint b35; 
-            uint b36;
             break;
           case 3:
+            uint b29;
+            uint b30;
+            uint b31;
             break;
           case 4:
+            uint b29;
+            uint b30;
+            uint b31;
+            uint b32;
+            uint b33;
+            uint b34;
+            uint b35; 
+            if (version >= 14)
+            {
+              uint b36;
+              uint b37;
+              uint b38;
+              uint b39;
+              uint b40;
+              uint b41;
+              uint b42;
+              uint b43;
+              uint b44;
+              uint b45;
+              uint b46;
+              uint b47;
+              uint b48;
+              uint b49;
+            };
+
+            if (version >= 26)
+            {
+              UINT Length;
+              char Name13[Length];
+            };
             break;
           case 5:
+            uint num;
+            struct {
+              uint b;
+              uint b;
+              uint b; 
+            } asdf[num];
+            uint b30;
+            uint b31;
+            uint b32;
+            uint b33;
+            uint b34;
+            uint b35;
+            uint b36;
+            uint b37;
             break;
           case 6:
+            uint b29;
+            uint b30;
+            uint b31;
+            uint b32;
+            uint b33;
             break;
           case 7:
+            uint b29;
+            uint b30;
+            uint b31;
+            uint num;
+            struct {
+              uint b;
+              uint b;
+              uint b; 
+              uint b;
+            } asdf[num];
+            uint b32;
+            uint b33;
+            uint b34;
+            uint b35;
             break;
           case 8:
+            uint num;
+            struct {
+              uint b;
+              uint b;
+              uint b; 
+              uint b;
+            } asdf[num];
+            uint b30;
+            uint b31;
+            uint b32;
+            uint b33;
+            uint b34;
+            uint b35;
+            uint b36;
+            uint b37;
+            uint b38;
+            uint b39;
+            uint b40;
+            uint b41;
+            uint b42;
+            uint b43;
+            uint b44;
+            uint b45;
+            uint b46;
             break;
           case 9:
+            uint num;
+            struct {
+              uint b;
+              uint b;
+              uint b; 
+              uint b;
+            } asdf[num];
+            uint b30;
+            uint b31;
+            uint b32;
+            uint b33;
             break; 
         };
         break;
       case 13:
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
+        uint b15;
+        uint b16;
+        uint b17;
+        uint b18;
+        uint b19;
+        uint b20;
+        uint b21;
+        uint b22;
+        uint b23;
 
+        uint b24[3];
+        if (version >= 3)
+        {
+            uint b25;
+            uint b26;
+            uint b27;
+            uint b28;
+            uint b29;
+         };
 
+        if (version >= 9)
+        {
+          uint b30;
+          uint b30;
+          uint b31;
+          uint b32;
+          uint b33;
+        };
+
+        uint b34;
+
+        if (version >= 25)
+          uint b35;
+
+        if (version >= 28)
+        {
+            uint b36;
+            uint b37;
+            uint b38[3];
+            uint b39[3];
+            uint b40[3];
+            uint b41[4];
+            uint b42[4];
+         };
         break;
       case 15:
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        float b2[6];
-        uint b;
-        uint num;
-        uint tb[num];
-        uint num1;
-        uint s[num1];
+        uint b15[6];
+        uint b16;
+        uint b17;
+        uint b18;
+        uint b19;
         break;
       case 16:
         uint b15;
@@ -415,13 +515,13 @@ UINT nodeNum;
         float b32;
         float b33;
 
-        if (version > 14)
+        if (version >= 14)
         {
           float b34;
           float b35;
         }
 
-        if (version > 25)
+        if (version >= 25)
         {
           float b36;
           float b37;
@@ -430,7 +530,7 @@ UINT nodeNum;
           float b40;
         }
 
-        if (version > 29)
+        if (version >= 29)
         {
           uint b41;
           uint b42[32];
@@ -439,7 +539,7 @@ UINT nodeNum;
           float b45;
         }
 
-        if (version > 41)
+        if (version >= 41)
         {
           float b46;
           float b47;
@@ -450,13 +550,13 @@ UINT nodeNum;
           float b52;
         }
 
-        if (version > 42)
+        if (version >= 42)
         {
           float b53;
           float b54;
         }
 
-        if (version > 49)
+        if (version >= 49)
         {
           float b55;
           float b56;
@@ -469,7 +569,7 @@ UINT nodeNum;
         uint b17; 
         uint b18; 
 
-        if (version > 5)
+        if (version >= 5)
         {
           uint b19;
           uint b20;
@@ -479,7 +579,7 @@ UINT nodeNum;
           uint b24;
         }
 
-        if (version > 47)
+        if (version >= 47)
         {
           uint b25;
           uint b26;
@@ -497,24 +597,50 @@ UINT nodeNum;
           char Name[Length];
         } u3[num] <optimize=false>;
 
-        if (version > 42)
+        if (version >= 42)
         {
           uint b31;
-          uint b32;
+          uint num;
           struct {
             uint b33;
-            uint b34;
-            UINT Length;
-            char Name33w[Length];
-            UINT Length;
-            char Name33w2[Length];
-            float b35;
-            float b36;
-            float b37;
-          } gh[b32];
+            if (b33) {
+              uint b34;
+              UINT Length;
+              char Name33w[Length];
+              UINT Length;
+              char Name33w2[Length];
+              float b35;
+              float b36;
+              float b37;
+             };
+          } gh[num] <optimize=false>;
         };
         break;
-      case 18:
+      case 19:
+        if (version >= 26)  
+          uint b15;
+        if (version >= 27)  
+          uint b16;
+        if (version >= 26) {  
+          uint b17;
+          uint b18;  
+          uint b19;
+          uint b20;
+          uint b21;
+          uint b22;  
+          uint b23;
+          uint b24;
+          uint b25;
+          uint b26;  
+          uint b27;
+          UINT Length;
+          char Name1[Length]; 
+          UINT Length;
+          char Name3[Length];   
+        };
+        break;
+      case 18:  
+        readNode3();
         uint b;
         uint b;
         uint b;
@@ -530,67 +656,54 @@ UINT nodeNum;
         uint b;
         uint b;
         uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
+        uint b;  
         break;
       case 20:
-        uint b;
-       uint b;
-       uint b;
-       uint b;
-       uint b;
-       uint b;
-       uint b;
-       uint b;
-       uint b;
-
+        uint b15;
+        uint b16;
+        uint b17;
+        uint b18;
+        uint b19;
         break;
       case 21:
-        uint bew;
-        uint b;
-        uint b;
-        uint b;   
-        uint num;
-        uint b54;
-        uint b;
-        uint b;
-        uint b;
-        uint bwarn;   
-  
-            struct {
-               UINT Length;
-               char Name[Length];
-                uint b;
-               uint b;
-               uint b; 
+        uint b15;
+        uint b16;
+        uint b17;
+        uint b18;   
+        uint b19;
+        if (version >= 8)
+        {
+          uint num;
+          struct {
+             UINT Length;
+             char Name[Length];
+             uint b;
+             uint b;
+            if (version >= 23)
+              uint b23;
+            if (version >= 24)
+              uint b22;
+            if (version >= 28) 
+              uint b23;
+          } ap2[num] <optimize=false>;
+          uint b20;     
+          uint b21;   
+          uint b22;
+        };
 
-            } ap[bwarn];
-        uint b;     
-        uint b;   
+        if (version >= 20) 
+          uint b23;
+        if (version >= 3)
+          uint b24;
+        if (version >= 24)
+          uint b25;
+        if (version >= 42) 
+          uint b26;  
+        if (version >= 33)
+          uint b27; 
+    
         uint b;
         uint b;
-        uint b;
-        uint b;
-        uint b;       
-        uint b;     
-        uint b;
-        uint num34;
-        uint a[num34*2];
 
         break;
       case 25:
@@ -610,10 +723,24 @@ UINT nodeNum;
         uint b; 
         break;
       case 26:
-        uint b;
-        uint b;
-        uint b;
-        uint b;
+        uint b15;
+        uint b16;
+        uint b17;
+        uint b18;
+        uint b19;
+        uint b20;
+        uint b21;
+        uint b22;
+        break;
+      case 27:
+        uint b15;
+        uint b16;
+        uint b17;
+        uint b18;
+        uint b19;
+        uint b20;
+        uint b21;
+        uint b22;
         break;
       case 29:
         uint b15;
@@ -623,7 +750,7 @@ UINT nodeNum;
         uint b19;
         uint b20;
         uint b21; 
-         uint b22; 
+        uint b22; 
         if (version >= 19)
         {
           uint b23;
@@ -644,85 +771,74 @@ UINT nodeNum;
         {
           uint b30;  
         }; 
+
         if (version >= 19)
         {
-          uint b31;
+          uint num;
+          struct {
+              uint b32; 
+              uint b33; 
+              uint b34;
+              uint b35;
+          } t00[num];  
+        };
+
+        if (version >= 19)
+        {
+          uint b36;  
+          uint b37;
+          uint b38;  
+        };  
+
+        if (version >= 13) {
+          uint num;
+          struct {
+              uint b32; 
+              uint b33; 
+              uint b34;
+              uint b35;
+          } t[num]; 
+        };
+        if (version >= 21) 
           uint b32; 
+        if (version >= 21)
           uint b33; 
+        if (version >= 41)
           uint b34;
-        };   
+        if (version >= 45)
+          uint b33; 
+        if (version >= 45)
+          uint b34;
+        if (version >= 45)
+          uint b35;
+        break;
+      case NODE_TYPE_Matrix_Animation:
+        uint b15[3];
+        uint b16;
+        uint b17;
+        uint b18;
+        uint b19;  
+        uint b20;
+        uint b21;  
 
         uint num;
         struct {
-          uint b;
-          uint b; 
-          uint b; 
-          uint b;   
-        } d[num];
+          uint b22[3];
+          uint b23[3];
+          uint b24[3];
+          uint b25[3];
+          uint b26[3];  
+          uint b27[3];
 
-        if (version >= 21)
-        {
-          uint b30;  
-          uint b;
-          uint b; 
-          uint b; 
-          uint b;  
-          uint b; 
-        };          
-        break;
-      case NODE_TYPE_Matrix_Animation:
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
+          uint b28[3];
+          uint b29[3];  
+          uint b320[3];
+          uint b31[3];
+        } ui[num];
         break;
       case NODE_TYPE_Matrix_TRIGGER:
-         uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;
-        uint b;   
+         uint b15;
+        uint b16;
 
         break;
       case 30:
@@ -735,9 +851,79 @@ UINT nodeNum;
         uint b20;
         uint b21;
 
-        if (version > 41)
-          uint b22;
-       break;
+        if (version > 41)  {
+          uint num;
+
+          struct {
+            UINT Length;
+            char name[Length];
+            float b;
+            float b;
+            float b;
+            float b;
+            float b;
+            float b;
+            float b;
+            float b;
+          } u2[num] <optimize=false>; 
+ 
+        }
+        break;
+      case 32:
+        uint b15;
+        uint b16;
+        uint b17;
+        uint b18;
+        uint b19;
+        uint b20;
+        uint b21;
+        uint b22;
+        break;
+      case 33:
+        uint b15;
+        uint b16;
+        uint b17;
+
+        uint b18;
+        break;
+      case 34:
+        uint b15;
+        uint b16;
+        uint b17;
+
+        uint b18;
+        break;
+      case 35:
+        float b15;
+        UINT Length;
+        char Name3[Length]; 
+        UINT b17;
+        UINT b18;
+        UINT b19[4];
+        UINT b29;
+        UINT b21;
+        break;
+      case 36:
+        UINT b15;
+        UINT b16;
+        UINT b17;
+        UINT b18;
+        if (version >= 26)  {
+          UINT b29[4];
+          UINT b30;
+        }
+        if (version >= 30)
+          UINT b31;
+        if (version >= 30) 
+          UINT b32;
+        break;
     };
  
-  } NODE[B] <optimize=false>;
+  } NODE <optimize=false, name=getName()>;
+
+NODE Node[B];
+
+
+string getName() {
+  return this.NodeName;
+}
