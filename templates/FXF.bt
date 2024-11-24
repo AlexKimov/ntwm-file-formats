@@ -11,6 +11,12 @@
 //   History: 
 //------------------------------------------------
 
+const uint TEXTURE = 0;
+const uint OBJECT = 1;
+const uint SOUND = 2;
+const uint MATERIAL = 4;
+const uint CHARACTER_ANIMATION = 6;
+const uint FONT = 7;
 
 typedef struct {
   UINT Length;
@@ -38,90 +44,100 @@ UINT Count;
 typedef struct {
     UINT type;
     UINT Index;
+    //
     UINT UnknownA;
-    CSTRING Name;  
-    if (type == 0)
-      struct {
-        CSTRING Name2;
-        CSTRING Name3; 
-        BYTE Data[32];
-      } DATA; 
-    else if (type == 1) 
-      struct { 
-        CSTRING Name2;
-        CSTRING Name3;
-        UINT A;
-        UINT A;
-        UINT Count; 
-        struct {
+    CSTRING Name; 
+    CSTRING Name2;
+    CSTRING Name3; 
+    switch (type) {
+      case TEXTURE:
           UINT A;
           UINT A;
-          BYTE K[44];
-          BYTE B[12];          
-        } B[Count];
+          struct {
+             UINT A;
+             UINT A;
+             UINT A;
+             UINT A;
+             UINT A;
+             UINT A;
+          } DATA;
+        break; 
+      case OBJECT:
         UINT A;
         UINT A;
-      } DATA; 
-    else if (type == 2) 
-      struct { 
-        CSTRING Name2;
-        CSTRING Name3; 
-        BYTE Data[20];
-      } DATA; 
-    else if (type == 4) 
-      struct { 
-        UINT A[4];
-        FLOAT Data1[11];
-        UINT B[5];  
-        FLOAT Data2[2];
-
+        struct { 
+          UINT num; 
+          struct {
+             UINT A;
+             UINT A;
+             BYTE K[44];
+             BYTE B[12];          
+          } B[num];
+          UINT A;
+          UINT A;
+        } DATA; 
+        break;
+      case SOUND:
+        struct { 
+          BYTE Data[20] <optimize=false>;
+        } DATA; 
+        break;
+      case MATERIAL:
+        UINT A; 
+        UINT A; 
+        struct { 
+          UINT A[17];
+          UINT B;  
+          UINT B;
+          UINT A1;
+          UINT num;
+          UINT AA[num];
+          UINT B;  
+          UINT B;
+          UINT A1;
+          UINT B;  
+          UINT B;
+          UINT A1;   
+          UINT B;
+          UINT A1;  
+          UINT B;
+          UINT A1; 
+        } DATA;
+        break;
+      case CHARACTER_ANIMATION:
+        struct { 
+          BYTE Data[12] ;
+        } DATA;
+        break;
+      case FONT:
         UINT A1;
         UINT A2;
-        UINT A3;
-        if (A3 == 2)
-        UINT num;
-        UINT num;
-        UINT AA[num];
-        UINT Data3[8];       
-      } DATA;
-    else if (type == 6) 
-      struct { 
-        CSTRING Name2;
-        CSTRING Name3;  
-        BYTE Data[12];
-      } DATA;
-    else if (type == 7) 
-      struct { 
-        UINT A1;
-        UINT A2;
-        UINT A3; 
-        UINT A3; 
-        CSTRING Name2;
-        UINT Count;
-        BYTE Data[Count];
-        UINT A1;
-        UINT A2;
-        UINT A3; 
-        UINT A3; 
-        UINT A3; 
-        FLOAT A;
-        UINT Width; 
-        UINT Height; 
-        UINT Count; 
-        FLOAT A;    
-        BYTE Data0[Count];
-        BYTE AA[30];
-        struct {
-          FLOAT A;
-          FLOAT A;
-          FLOAT A;
-          FLOAT A;
-        } I[Count];
-      } DATA;
-} DATA <optimize=false>;
+        struct { 
+          CSTRING Name;   
+          CSTRING Name;   
+          UINT A3; 
+          UINT A3; 
+          UINT A3; 
+          UINT b;
+          UINT A3; 
+          if (b != -1) {
+            UINT n; 
+            UINT A3; 
+            UINT A3; 
+            UINT z;
+            UINT A32; 
+            char text[256];
+            struct {
+              FLOAT A[4];
+            } a[z];
+          };
+        } DATA;
+        break;
+    }; 
+} NODE <optimize=false>;
 
-DATA D[Count];
+NODE D[Count] <name=getName()>;
 
-string getName(DATA &d) {
-  return d.Name;
+string getName() {
+  return this.Name.Text;
 }
