@@ -21,9 +21,9 @@ typedef struct {
 LittleEndian();
 
 UINT version;
-UINT B;
-UINT C;
 UINT nodeNum;
+UINT C;
+UINT nodeNum2;
 
 void readNode3() {
     uint b15; 
@@ -139,7 +139,7 @@ typedef struct {
           ubyte b22;
         UINT b16;
         UINT num;
-        uint d13[num];
+        uint d13[num/4];
 
         switch (bn) {
           case 2:
@@ -1005,7 +1005,7 @@ typedef struct {
  
   } NODE <optimize=false, name=getName()>;
 
-NODE Node[B];
+NODE Node[nodeNum];
 
 
 string getName() {

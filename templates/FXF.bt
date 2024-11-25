@@ -11,6 +11,8 @@
 //   History: 
 //------------------------------------------------
 
+local uint a = 0;
+
 const uint TEXTURE = 0;
 const uint OBJECT = 1;
 const uint SOUND = 2;
@@ -22,8 +24,6 @@ typedef struct {
   UINT Length;
   CHAR Text[Length];
 } CSTRING;
-
-//-----------------
 
 struct {
   UINT Version;
@@ -47,8 +47,8 @@ typedef struct {
     //
     UINT UnknownA;
     CSTRING Name; 
-    CSTRING Name2;
-    CSTRING Name3; 
+    CSTRING FileName;
+    CSTRING Path; 
     switch (type) {
       case TEXTURE:
           UINT A;
@@ -70,8 +70,20 @@ typedef struct {
           struct {
              UINT A;
              UINT A;
-             BYTE K[44];
-             BYTE B[12];          
+             FLOAT A;
+             FLOAT A;
+             FLOAT A;
+             FLOAT A;   
+             FLOAT A;
+             FLOAT A;
+             FLOAT A;
+             FLOAT A;
+             FLOAT A;
+             FLOAT A;
+             FLOAT A;
+             FLOAT A; 
+             FLOAT A;
+             FLOAT A;     
           } B[num];
           UINT A;
           UINT A;
@@ -103,6 +115,8 @@ typedef struct {
           UINT B;
           UINT A1; 
         } DATA;
+
+        a += 1;  
         break;
       case CHARACTER_ANIMATION:
         struct { 
@@ -139,5 +153,10 @@ typedef struct {
 NODE D[Count] <name=getName()>;
 
 string getName() {
-  return this.Name.Text;
+  if (exists(this.FileName.Text))
+    return this.FileName.Text;
+  else
+    return this.Name.Text;
 }
+
+Printf("%u", a);
