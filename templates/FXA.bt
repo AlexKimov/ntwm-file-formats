@@ -26,12 +26,12 @@ UINT C;
 UINT nodeNum2;
 
 void readNode3() {
-    uint b15; 
-    uint num;
+    uint ModelIndex; 
+    uint materialNum;
     struct {
-      uint b17;
-      uint b18; 
-    } k[num];
+      uint index;
+      uint unknown; 
+    } material[materialNum];
     if (version >= 5)
     {
       uint b19;  
@@ -56,7 +56,7 @@ typedef struct {
     char NodeName[Length]; 
 
     VECTOR_3F coordinates;
-    VECTOR_3F normal;
+    VECTOR_3F sacle;
     VECTOR_4F orientation; 
 
     if (version >= 6) {
@@ -68,7 +68,7 @@ typedef struct {
     uint num00;  
  
     struct {
-      dhfdh();
+      checkIfExistAnywhere();
     } obj[num00] <optimize=false>;
 
     UINT num;
@@ -103,7 +103,7 @@ typedef struct {
      };
     } obj1[num] <optimize=false>;
 
-    UINT num2;
+    UINT eventNum;
     struct {
       UINT C;
       if (version >= 15) {
@@ -114,7 +114,7 @@ typedef struct {
       }  
       UINT Length;
       char Name3[Length];
-   } u3[num2] <optimize=false>;
+   } EVENT[eventNum] <optimize=false>;
 
     uint b9;
     uint b10;  
@@ -123,10 +123,10 @@ typedef struct {
     uint b13;
     uint b14;     
     uint b15;
-    UINT b16;
+    float b16;
 
     float b17;
-    uint b18;
+    float b18;
     uint b19;
 
     if (version >= 46)
@@ -166,24 +166,24 @@ typedef struct {
 
           break;
       case 2:
-        uint b15;
+        uint soundIndex;
         uint b16;
-        uint b17;
-        if (version > 36) {
+        float b17;
+        if (version >= 36) {
           uint b;
-          uint b;
-          uint b;
+          float b;
+          float b;
 
-          uint b18;
-          uint b19;  
+          float b18;
+          float b19;  
           uint b20; 
           uint b21;
           uint b22;
           uint b22;
           uint b23;
           uint b24;
-          if (version > 41)
-          uint b25;
+          if (version >= 41)
+              float b25;
         } else {
           uint b18;
           uint b19;  
@@ -196,17 +196,17 @@ typedef struct {
         break;
       case NODE_TYPE_LIGHT:
           uint b15;
-          uint b160[4];
-          uint b170[4];
-          uint b180[4];
-          uint b19;
+          float b160[4];
+          float b170[4];
+          float b180[4];
+          float b19;
  
           if (version >= 55) {
-              uint b;
-              uint b;
-              uint b;
+              float b;
+              float b;
+              float b;
           }
-          uint b;
+          float b;
           uint b;
           uint b;     
           uint b;
@@ -315,7 +315,7 @@ typedef struct {
         uint b16;
         uint b17;
         uint b18; 
-        uint b19;
+        uint IconIndex;
         uint b20;
         uint b21;
         uint b22;
@@ -877,17 +877,18 @@ typedef struct {
           } t[num]; 
         };
         if (version >= 21) 
+        {
           uint b32; 
-        if (version >= 21)
           uint b33; 
+        }
         if (version >= 41)
           uint b34;
         if (version >= 45)
+        {
           uint b33; 
-        if (version >= 45)
           uint b34;
-        if (version >= 45)
           uint b35;
+        }
         break;
       case NODE_TYPE_Matrix_Animation:
         uint b153[3];
@@ -1009,5 +1010,42 @@ NODE Node[nodeNum];
 
 
 string getName() {
-  return this.NodeName;
+  string str;
+  switch (this.type) {
+    case 0: 
+      return "Group: " + this.NodeName;
+      break;
+    case 2: 
+      return "Sound: " + this.NodeName;
+      break;
+    case 3: 
+      return "Model: " + this.NodeName;
+      break;
+    case 4: 
+      return "Light: " + this.NodeName;
+      break;
+    case 5: 
+      return "Link: " + this.NodeName;
+      break;
+    case 12:
+      return "InventoryIcon: " + this.NodeName;
+      break;
+    case 17: 
+      return "Model: " + this.NodeName;
+      break;
+    case 18: 
+      return "Particle: " + this.NodeName;
+      break;
+    case 21: 
+      return "Spawn: " + this.NodeName;
+      break;
+    case 31: 
+      return "Trigger: " + this.NodeName;
+      break;
+    case 32: 
+      return "AI: " + this.NodeName;
+      break;
+    default:
+      return this.NodeName;
+  }
 }

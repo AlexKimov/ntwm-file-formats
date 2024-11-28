@@ -11,10 +11,8 @@
 //   History: 
 //------------------------------------------------
 
-local uint a = 0;
-
 const uint TEXTURE = 0;
-const uint OBJECT = 1;
+const uint MODEL = 1;
 const uint SOUND = 2;
 const uint MATERIAL = 4;
 const uint CHARACTER_ANIMATION = 6;
@@ -36,7 +34,7 @@ struct {
   UINT Count;
   struct {
     CSTRING Name;   
-  } DATA0[Count] <optimize=false>;
+  } LIST[Count] <optimize=false>;
 } NAMES[HEADER.SectionCount] <optimize=false>;
 
 
@@ -45,105 +43,99 @@ typedef struct {
     UINT type;
     UINT Index;
     //
-    UINT UnknownA;
+    UINT groupIndex;
+
     CSTRING Name; 
     CSTRING FileName;
     CSTRING Path; 
+    UINT Un; 
+    UINT Un; 
+
     switch (type) {
       case TEXTURE:
-          UINT A;
-          UINT A;
           struct {
-             UINT A;
-             UINT A;
-             UINT A;
-             UINT A;
-             UINT A;
-             UINT A;
+             UINT Un;
+             UINT Un;
+             UINT Un;
+             UINT Un;
+             UINT Un;
+             UINT Un;
           } DATA;
         break; 
-      case OBJECT:
-        UINT A;
-        UINT A;
+      case MODEL:
         struct { 
           UINT num; 
           struct {
-             UINT A;
-             UINT A;
-             FLOAT A;
-             FLOAT A;
-             FLOAT A;
-             FLOAT A;   
-             FLOAT A;
-             FLOAT A;
-             FLOAT A;
-             FLOAT A;
-             FLOAT A;
-             FLOAT A;
-             FLOAT A;
-             FLOAT A; 
-             FLOAT A;
-             FLOAT A;     
+             UINT Un;
+             UINT Un;
+             FLOAT Un;
+             FLOAT Un;
+             FLOAT Un;
+             FLOAT Un;   
+             FLOAT Un;
+             FLOAT Un;
+             FLOAT Un;
+             FLOAT Un;
+             FLOAT Un;
+             FLOAT Un;
+             FLOAT Un;
+             FLOAT Un; 
+             FLOAT Un;
+             FLOAT Un;     
           } B[num];
-          UINT A;
-          UINT A;
+          UINT Un;
+          UINT Un;
         } DATA; 
         break;
       case SOUND:
         struct { 
-          BYTE Data[20] <optimize=false>;
+          UINT Un[3] <optimize=false>;
         } DATA; 
         break;
       case MATERIAL:
-        UINT A; 
-        UINT A; 
         struct { 
-          UINT A[17];
-          UINT B;  
-          UINT B;
-          UINT A1;
-          UINT num;
-          UINT AA[num];
-          UINT B;  
-          UINT B;
-          UINT A1;
-          UINT B;  
-          UINT B;
-          UINT A1;   
-          UINT B;
-          UINT A1;  
-          UINT B;
-          UINT A1; 
+          FLOAT Un[17];
+          UINT Un;  
+          UINT Un;
+          UINT Un;
+          UINT textureNum;
+          UINT texIndex[textureNum];
+          UINT Un;  
+          UINT Un;
+          UINT Un;
+          UINT Un;  
+          UINT Un;
+          UINT Un;   
+          UINT Un;
+          UINT Un;  
+          UINT Un;
+          UINT Un; 
         } DATA;
-
-        a += 1;  
         break;
       case CHARACTER_ANIMATION:
         struct { 
-          BYTE Data[12] ;
+           UINT Un;
         } DATA;
         break;
       case FONT:
-        UINT A1;
-        UINT A2;
         struct { 
           CSTRING Name;   
           CSTRING Name;   
-          UINT A3; 
-          UINT A3; 
-          UINT A3; 
+          UINT Un; 
+          UINT Un; 
+          UINT Un; 
           UINT b;
-          UINT A3; 
+          UINT Un; 
           if (b != -1) {
             UINT n; 
-            UINT A3; 
-            UINT A3; 
-            UINT z;
-            UINT A32; 
+            UINT Un; 
+            UINT Un; 
+            UINT num;
+            UINT Un; 
             char text[256];
             struct {
               FLOAT A[4];
-            } a[z];
+            } a[num];
           };
         } DATA;
         break;
@@ -153,10 +145,15 @@ typedef struct {
 NODE D[Count] <name=getName()>;
 
 string getName() {
-  if (exists(this.FileName.Text))
-    return this.FileName.Text;
-  else
-    return this.Name.Text;
-}
+  string str, nameStr;
 
-Printf("%u", a);
+  if (exists(this.FileName.Text))
+    nameStr = this.FileName.Text;
+  else
+    nameStr = this.Name.Text;
+
+  SPrintf(str, "%s: %s", NAMES[this.type].LIST[this.groupIndex].Name.Text, nameStr);
+  
+ 
+    return  str;
+}
