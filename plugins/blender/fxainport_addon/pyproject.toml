@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fxa-addon-nosperatu"
+version = "1.0.1"
+description = "FXA importer for Nosperatu: Wrath of Malachii"
+authors = [{name = "Custom"}]
+requires-python = ">=3.10"
+
+[tool.setuptools]
+packages = ["fxainport_addon"]
